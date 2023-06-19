@@ -9,6 +9,7 @@ class Solution {
 public:
     vector<vector<int>> generateMatrix(int n) {
         int count = 1;
+        a
         vector<vector<int>> a(n, vector<int> (n));
         int l = 0  , r = n-1, t = 0, b = n-1;
         while(l<=r&&t<=b){
