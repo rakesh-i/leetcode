@@ -8,13 +8,13 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-        int n= nums.size();
-        int lo = 0; int hi = n-1;
-        while(hi>=lo){
-            int mid = (hi+lo)/2;
-            double num = (nums[mid]<nums[0])==(target<nums[0])?
-                        nums[mid]
-                        :target<nums[0]?-INFINITY:INFINITY;
+        int n = nums.size();
+        int lo = 0;
+        int hi = n-1;
+        while(lo<=hi){
+            int mid = (lo+hi)/2;
+            double num = (nums[mid]<nums[0])==(target<nums[0])?nums[mid]:
+                        (target<nums[0])?-INFINITY:INFINITY;
             if(num<target){
                 lo = mid+1;
             }
@@ -24,6 +24,7 @@ public:
             else{
                 return mid;
             }
+            
         }
         return -1;
     }
