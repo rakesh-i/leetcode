@@ -23,7 +23,7 @@ public:
                     bot--;
                 }
                 return {bot+1, top-1};
-            }
+            } 
             else if(nums[mid]<target){
                 low = mid+1;
             }
