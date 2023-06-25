@@ -18,19 +18,18 @@
  */
 class Solution {
 public:
-    void helper(TreeNode* root, int *a){
+    int helper(TreeNode* root){
         if(root==NULL){
-            return;
+            return 0;
         }
-        helper(root->left, a);
-        *a = *a +1;
-        helper(root->right, a);
+        int r = helper(root->right);
+        int l = helper(root->left);
+        return 1+l+r;
     }
 
     int countNodes(TreeNode* root) {
-       int a = 0;
-       helper(root, &a);
-       return a; 
+                
+       return helper(root); 
     }  
 };
 // @lc code=end
