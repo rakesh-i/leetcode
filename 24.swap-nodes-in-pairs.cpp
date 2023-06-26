@@ -17,54 +17,20 @@
  */
 class Solution {
 public:
-    ListNode* helper(ListNode *head){
-        ListNode *prev = NULL;
-        ListNode *curr = head;
-        ListNode *temp= curr->next;
-        ListNode *root = temp;
-        if(!temp->next){
-            temp->next = curr;
-            curr->next=NULL;
-            return root;
-        }
-        ListNode *next = temp->next; 
-        while(next){
-            curr->next = next;
-            temp->next = curr;
-            if(prev==NULL){
-                prev = curr;
-                curr = next;
-                temp = curr->next;
-                if(!temp){
-                    return root;
-                }
-                next = temp->next;
-            }
-            else{
-                prev->next = temp;
-                prev = curr;
-                curr = next;
-                temp = curr->next;
-                if(!temp){
-                    return root;
-                }
-                next = temp->next;
-            }
-        }
-        if(!temp){
-            return root;
-        }
-        temp->next = curr;
-        curr->next = NULL;
-        prev->next = temp;
-        
-        return root;
-    }
     ListNode* swapPairs(ListNode* head) {
-        if(head==NULL||head->next==NULL){
+        if(head==NULL){
+            return NULL;
+        }
+        if(head->next==NULL){
             return head;
         }
-        return helper(head);
+        ListNode *curr = head;
+        ListNode *temp = head->next;
+        curr->next = temp->next;
+        temp->next = curr;
+        
+        curr->next=swapPairs(curr->next);
+        return temp;
 
     }
 };
