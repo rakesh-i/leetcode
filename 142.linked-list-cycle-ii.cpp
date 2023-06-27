@@ -19,7 +19,7 @@ public:
         if(!head){
             return head;
         }
-        map<ListNode*, int> m;
+        unordered_map<ListNode*, int> m;
         while(head){
             m[head]++;
             if(m[head]>1){
