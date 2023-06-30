@@ -32,9 +32,7 @@ public:
                     b[10]--;
                 }
                 else if(b[5]>=3){
-                    b[5]--;
-                    b[5]--;
-                    b[5]--;
+                    b[5]-=3;
                 }
                 else{
                     return false;
