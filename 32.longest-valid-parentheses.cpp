@@ -8,36 +8,22 @@
 class Solution {
 public:
     int longestValidParentheses(string s) {
-        int m = 0;
-        int cur = 0;
-        int n =s.size();
-        stack<int> st;
-        for(int i=0; i<n; i++){
-            if(s[i]=='('){
-                st.push(i);
-            }
-            else{
-                if(!st.empty()){
-                    if(s[st.top()]=='('){
-                        st.pop();
-                    }
-                    else{
-                        st.push(i);
-                    }
+        stack<int> stk;
+        stk.push(-1);
+        int ans = 0;
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == '(') {
+                stk.push(i);
+            } else {
+                stk.pop();
+                if (stk.empty()) {
+                    stk.push(i);
+                } else {
+                    ans = max(ans, i - stk.top());
                 }
-                st.push(i);
             }
         }
-        if(st.empty()){
-            return n;
-        }
-        int a = n; int b=0;
-        while(!st.empty()){
-            b = st.top(); 
-            st.pop();
-            m = max(m, a-b-1);
-        }
-        return m;
+        return ans;
     }
 };
 // @lc code=end
