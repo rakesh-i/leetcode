@@ -16,12 +16,8 @@ public class Solution {
                 res[1] =(int) m[target-nums[i]];
                 return res;
             }
-            try{
-                m.Add(nums[i], i);
-            }
-            catch(Exception e){
-                continue;
-            }
+            
+            m[nums[i]]=i;
         }
         return res;
     }
