@@ -23,8 +23,7 @@ public class Solution {
             if(num>m||(num==m&&((s[i]-'0'))>7)){
                 return sign==-1?int.MinValue: int.MaxValue;
             }
-            num = num*10+(s[i]-'0');
-            i++;
+            num = num*10+(s[i++]-'0');
         }
         return sign*num;
     }
