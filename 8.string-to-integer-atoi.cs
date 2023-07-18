@@ -7,25 +7,26 @@
 // @lc code=start
 public class Solution {
     public int MyAtoi(string s) {
-        const int maxCmp = int.MaxValue / 10;
-        var num = 0;
-        var sign = 1;
-
-        var idx = 0;
-        while (idx < s.Length && s[idx] == ' ')
-            idx++;
-
-        if (idx < s.Length && (s[idx] == '+' || s[idx] == '-'))
-            sign = s[idx++] == '-' ? -1 : 1;
-
-        while (idx < s.Length && s[idx] > 47 && s[idx] < 58)
-        {
-            if (num > maxCmp || (num == maxCmp && (s[idx] - '0') > 7))
-                return sign == -1 ? int.MinValue : int.MaxValue;
-            num = num * 10 + (s[idx++] - '0');
+        int m = int.MaxValue/10;
+        int i=0;
+        int sign = 1;
+        int n = s.Length;
+        int num = 0;
+        while(i<n&&s[i]==' '){
+            i++;
         }
-
-        return num * sign;
+        if(i<n&&(s[i]=='-'||s[i]=='+')){
+            sign= (s[i]=='-')?-1:1;
+            i++;
+        }
+        while(i<n&&s[i]>=48&&s[i]<=57){
+            if(num>m||(num==m&&((s[i]-'0'))>7)){
+                return sign==-1?int.MinValue: int.MaxValue;
+            }
+            num = num*10+(s[i]-'0');
+            i++;
+        }
+        return sign*num;
     }
 }
 // @lc code=end
