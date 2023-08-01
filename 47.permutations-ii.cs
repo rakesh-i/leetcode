@@ -32,7 +32,6 @@ public class Solution {
         nums[j] = temp;
     }
     public IList<IList<int>> PermuteUnique(int[] nums) {
-        //Array.Sort(nums);
         IList<IList<int>> res = new List<IList<int>>();
         helper(nums, 0, nums.Length,  res);
         return res;
