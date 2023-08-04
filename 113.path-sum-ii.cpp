@@ -17,35 +17,31 @@
  * };
  */
 class Solution {
-private:
-    void solve(TreeNode* root, int targetSum ,  vector<int> path , vector<vector<int>> &ans){
-        if(root == NULL)
-            return ;
-        
-        path.push_back(root->val);
-        
-        if(root->left == NULL && root->right==NULL){
-            long int sum = 0;
-            int size = path.size();
-            for(int i = size-1 ; i >=0 ; i--){
-                sum += path[i];
-            }
-            if(sum == targetSum)
-                ans.push_back(path);
-        }
-        solve(root->left , targetSum , path , ans);
-        solve(root->right , targetSum , path , ans);
-        
-        path.pop_back();
-    }
-
     public:
+    void dfs(TreeNode *head, int n, int s, vector<int> cur, vector<vector<int>> &res){
+        if(!head){
+            return;
+        }
+        cur.push_back(head->val);
+        n = n+head->val;
+        if(!head->left&&!head->right){
+            if(n==s){
+                res.push_back(cur);
+            }
+        }
+        dfs(head->left, n, s, cur, res);
+        dfs(head->right, n, s, cur, res);
+        n = n - cur.back();
+        cur.pop_back();
+
+
+    }
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) 
-    {
-        vector<vector<int>> ans;
-        vector<int> path;
-        solve(root , targetSum , path , ans);
-        return ans;
+    {   
+       vector<vector<int>> res;
+       vector<int> cur;
+       dfs(root, 0, targetSum, cur, res);
+       return res;
     }
 };
 // @lc code=end
