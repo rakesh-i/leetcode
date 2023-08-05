@@ -19,7 +19,7 @@
 class Solution {
 public:
     void dfs(TreeNode* head, int n, int s, int* res){
-        if(!head||*res==1){
+        if(!head){
             return;
         }
         s += head->val;
@@ -29,7 +29,7 @@ public:
             }
             return;
         }
-       
+        
         dfs(head->left, n, s, res);
         dfs(head->right, n, s, res);
         s = s-head->val;
