@@ -15,7 +15,7 @@ public:
         if(l[m][n]!=0){
             return l[m][n];
         }
-        l[m][n] = uniquePaths(m-1, n)+uniquePaths(m, n-1);
+        l[m][n]=l[n][m] = uniquePaths(m-1, n)+uniquePaths(m, n-1);
         return l[m][n];
     }
 };
