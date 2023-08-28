@@ -9,6 +9,9 @@ class Solution {
 public:
     vector<vector<int>> res;
     void helper(int idx, int n, int sum, vector<int> temp,int k){
+        if(sum>n){
+            return;
+        }
         if(sum==n){
             if(temp.size()==k){
                 res.push_back(temp);
