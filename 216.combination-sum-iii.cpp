@@ -8,26 +8,25 @@
 class Solution {
 public:
     vector<vector<int>> res;
-    void helper(vector<int> &c, vector<int> temp, int i, int t, int k, int sum){
-        if(temp.size()==k&&sum==t){
-            res.push_back(temp);
+    void helper(int idx, int n, int sum, vector<int> temp,int k){
+        if(sum==n){
+            if(temp.size()==k){
+                res.push_back(temp);
+            }
+            
             return;
         }
-        if(temp.size()>k){
-            return;
-        }
-        for(int j=i; j<9; j++){
-            sum+=c[j];
-            temp.push_back(c[j]);
-            helper(c, temp, j+1, t, k, sum);
-            sum-=c[j];
+        for(int i=idx; i<=9; i++){
+            sum+=i;
+            temp.push_back(i);
+            helper(i+1, n, sum, temp,k);
+            sum-=i;
             temp.pop_back();
         }
     }
     vector<vector<int>> combinationSum3(int k, int n) {
-        vector<int> c = {1,2,3,4,5,6,7,8,9};
         vector<int> temp;
-        helper(c, temp, 0, n, k, 0);
+        helper(1, n, 0, temp, k);
         return res;
     }
 };
