@@ -7,27 +7,35 @@
 // @lc code=start
 class Solution {
 public:
-    int path(vector<vector<int>>& o, int m, int n,vector<vector<int>>&l){
-        if(m>=0 && n>=0 && o[m][n]==1){
+    int uniquePathsWithObstacles(vector<vector<int>>& o) {
+        int m = o.size();
+        int n = o[0].size();
+        if(o[0][0]==1){
             return 0;
         }
-        if(m<0||n<0){
-            return 0;
+        vector<vector<int>> dp(m+1, vector<int>(n+1,0));
+        dp[0][0] = 1;
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if(i+1<m){
+                    if(o[i+1][j]==1){
+                        dp[i+1][j]=0;
+                    }
+                    else{
+                        dp[i+1][j] += dp[i][j];
+                    }
+                }
+                if(j+1<n){
+                    if(o[i][j+1]==1){
+                        dp[i][j+1]=0;
+                    }
+                    else{
+                        dp[i][j+1] += dp[i][j];
+                    }
+                }
+            }
         }
-        if(m==0&&n==0){
-            return 1;
-        }
-        if(l[m][n]!=-1){
-            return l[m][n];
-        }
-        l[m][n] = path(o, m-1, n, l)+path(o, m, n-1, l);
-        return l[m][n];
-    }
-    int uniquePathsWithObstacles(vector<vector<int>>& Grid) {
-        int m = Grid.size();
-        int n = Grid[0].size();
-        vector<vector<int>> l(m+1,vector<int> (n+1,-1));
-        return path(Grid, m-1, n-1,l);
+        return dp[m-1][n-1];
     }
 };
 // @lc code=end
