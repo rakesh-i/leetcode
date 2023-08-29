@@ -7,27 +7,19 @@
 // @lc code=start
 class Solution {
 public:
-    int fib(int n, vector<int> &l){
-        if(l[n]!=-1){
-            return l[n];
-        }
-        if(n<0){
+    int fib(int n) {
+        if(n==0){
             return 0;
         }
-        if(n==1){
-            return 1;
-        }
-        
-        l[n] = fib(n-1,l)+fib(n-2,l);
-        return l[n];
+       vector<int> dp(n+2, 0);
+       dp[1] = 1;
+       for(int i=1; i<n; i++){
+            dp[i+1] += dp[i];
+            dp[i+2] += dp[i];
+       }
+       //cout<<dp[n]<<endl;
+       return dp[n];
 
-    }
-    int fib(int n) {
-       vector<int> l(31, -1);
-        l[0] = 0;
-        l[1] = 1;
-    //    return 0;
-       return fib(n, l);
     }
 };
 // @lc code=end
