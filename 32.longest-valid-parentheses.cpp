@@ -8,22 +8,30 @@
 class Solution {
 public:
     int longestValidParentheses(string s) {
-        stack<int> stk;
-        stk.push(-1);
-        int ans = 0;
-        for (int i = 0; i < s.size(); i++) {
-            if (s[i] == '(') {
-                stk.push(i);
-            } else {
-                stk.pop();
-                if (stk.empty()) {
-                    stk.push(i);
-                } else {
-                    ans = max(ans, i - stk.top());
+        stack<int> st;
+        int start = 0;
+        int mx = 0;
+        for(int i=1; i<=s.size(); i++){
+            if(s[i-1]=='('){
+                st.push(i);
+            }
+            else{
+                if(st.empty()){
+                    start = i;
+                    continue;
+                }
+                else{
+                    st.pop();
+                    if(st.empty()){
+                        mx = max(mx, i-start);
+                    }
+                    else{
+                        mx = max(mx, i-st.top());
+                    }
                 }
             }
         }
-        return ans;
+        return mx;
     }
 };
 // @lc code=end
