@@ -21,22 +21,22 @@ public:
                 {
                     if (i > j)
                     {
-                        lr++;
+                        ll++;
                     }
                     else
                     {
-                        ll++;
+                        lr++;
                     }
                 }
                 if (rating[i] < rating[j])
                 {
                     if (i > j)
                     {
-                        gr++;
+                        gl++;
                     }
                     else
                     {
-                        gl++;
+                        gr++;
                     }
                 }
             }
