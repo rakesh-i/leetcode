@@ -24,24 +24,24 @@ public:
     {
         if (!root)
         {
+            mx = max(mx, count);
             return;
         }
-        mx = max(mx, count);
         if (dir)
         {
             helper(root->left, 0, count + 1);
-            helper(root->right, 1, 1);
+            helper(root->right, 1, 0);
         }
         else
         {
-            helper(root->left, 0, 1);
+            helper(root->left, 0, 0);
             helper(root->right, 1, count + 1);
         }
     }
     int longestZigZag(TreeNode *root)
     {
-        helper(root, 0, 0);
-        helper(root, 1, 0);
+        helper(root, 0, -1);
+        helper(root, 1, -1);
         return mx;
     }
 };
